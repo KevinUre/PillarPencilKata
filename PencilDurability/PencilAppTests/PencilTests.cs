@@ -50,10 +50,17 @@ namespace PencilApp.Tests
         }
 
         [TestMethod()]
-        public void PencilDurabilityDecreasesWhenWritingMyName()
+        public void PencilDurabilityDecreasesWhenWritingMyFirstName()
         {
             testPencil.Write("Kevin", ref fauxPaper);
             Assert.AreEqual(95, testPencil.Durability);
+        }
+
+        [TestMethod()]
+        public void PencilDurabilityDecreasesWhenWritingAntidisestablishmentarianism()
+        {
+            testPencil.Write("Antidisestablishmentarianism", ref fauxPaper);
+            Assert.AreEqual(72, testPencil.Durability);
         }
     }
 }

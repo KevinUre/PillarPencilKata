@@ -18,8 +18,10 @@ namespace PencilApp
 
         public void Write(string inputText, ref string existingText)
         {
+            if (inputText == null)
+                return;
             existingText += inputText;
-            Durability -= 5;
+            Durability -= inputText.Length;
         }
     }
 }
