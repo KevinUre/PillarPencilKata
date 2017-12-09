@@ -42,5 +42,22 @@ namespace PencilApp.Tests
             fauxPaper = null;
             testPencil.EditAppend("onion", ref fauxPaper);
         }
+
+        [TestMethod()]
+        public void EditingUsesDurability()
+        {
+            fauxPaper = "An       a day keeps the doctor away";
+            testPencil.EditAppend("onion", ref fauxPaper);
+            Assert.AreEqual(95, testPencil.Durability);
+        }
+
+        [TestMethod()]
+        public void RunningOutOfDurabilityWhileEdittingLeavesTheOldCharacterBehind()
+        {
+            testPencil.Durability = 2;
+            fauxPaper = "An       a day keeps the doctor away";
+            testPencil.EditAppend("onion", ref fauxPaper);
+            Assert.AreEqual("An on    a day keeps the doctor away", fauxPaper);
+        }
     }
 }

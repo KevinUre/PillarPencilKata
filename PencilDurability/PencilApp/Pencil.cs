@@ -43,13 +43,7 @@ namespace PencilApp
                 return;
             for(int i = 0; i < inputText.Length; i++)
             {
-                int neededDurability;
-                if (Char.IsUpper(inputText[i]))
-                    neededDurability = 2;
-                else if (inputText[i] == ' ')
-                    neededDurability = 0;
-                else
-                    neededDurability = 1; //should cover both lower case and punctuation
+                int neededDurability = RequiredDurability(inputText[i]);
                 if (Durability - neededDurability < 0)
                     existingText += " "; //write spaces if durability runs out
                 else
@@ -58,6 +52,23 @@ namespace PencilApp
                     Durability -= neededDurability;
                 }
             }
+        }
+
+        /// <summary>
+        /// Returns the durability required to write a specified character
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        private int RequiredDurability(char input)
+        {
+            int neededDurability;
+            if (Char.IsUpper(input))
+                neededDurability = 2;
+            else if (input == ' ')
+                neededDurability = 0;
+            else
+                neededDurability = 1; //should cover both lower case and punctuation
+            return neededDurability;
         }
 
         /// <summary>
@@ -101,18 +112,28 @@ namespace PencilApp
             exisitingText = new string(newPaperText);
         }
 
+        /// <summary>
+        /// Fills the last gap of spaces in the given text with a given phrase
+        /// </summary>
+        /// <param name="inputText">The text to be inserted</param>
+        /// <param name="exisitingText">the text to to insert into</param>
         public void EditAppend(string inputText, ref string exisitingText)
         {
             if (inputText == null || exisitingText == null)
                 return;
             MatchCollection matches = Regex.Matches(exisitingText, @"   +");
             Match lastMatch = matches[matches.Count - 1]; //get last match
-            int operationStartIndex = lastMatch.Index + 1; //+1 to ignore the leading space
+            int operationStartIndex = lastMatch.Index + 1; // +1 to ignore the leading space
             char[] newPaperText = exisitingText.ToArray<Char>();
             int inputIterater = 0;
             for(int i = operationStartIndex; inputIterater < inputText.Length; i++)
             {
-                newPaperText[i] = inputText[inputIterater];
+                int neededDurability = RequiredDurability(inputText[inputIterater]);
+                if (Durability - neededDurability >= 0)
+                {
+                    newPaperText[i] = inputText[inputIterater];
+                    Durability -= neededDurability;
+                }
                 inputIterater++;
             }
             exisitingText = new string(newPaperText);
