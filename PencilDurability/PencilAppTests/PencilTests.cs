@@ -69,5 +69,21 @@ namespace PencilApp.Tests
             testPencil.Write("Hello World", ref fauxPaper);
             Assert.AreEqual(90, testPencil.Durability);
         }
+
+        [TestMethod()]
+        public void PencilStopsWritingWhenOutOfDurability()
+        {
+            testPencil.Durability = 3;
+            testPencil.Write("Hello World", ref fauxPaper);
+            Assert.AreEqual("Hel", fauxPaper);
+        }
+
+        [TestMethod()]
+        public void PencilWithNoDurabilityCantWrite()
+        {
+            testPencil.Durability = 0;
+            testPencil.Write("Hello World", ref fauxPaper);
+            Assert.AreEqual("", fauxPaper);
+        }
     }
 }

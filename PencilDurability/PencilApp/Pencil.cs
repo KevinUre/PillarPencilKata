@@ -20,9 +20,14 @@ namespace PencilApp
         {
             if (inputText == null)
                 return;
-            existingText += inputText;
-            int usedDurability = inputText.Length - inputText.Count(c => c == ' ');
-            Durability -= usedDurability;
+            for(int i = 0; i < inputText.Length; i++)
+            {
+                if (Durability == 0)
+                    break;
+                existingText += inputText[i];
+                if (inputText[i] != ' ')
+                    Durability--;
+            }
         }
     }
 }
