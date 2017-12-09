@@ -47,6 +47,7 @@ namespace PencilApp
         {
             DurabilityTextBox.Text = pencil.Durability.ToString();
             LengthTextBox.Text = pencil.Length.ToString();
+            EraserTextBox.Text = pencil.EraserDurability.ToString();
         }
 
         private void DurabilityTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -61,6 +62,15 @@ namespace PencilApp
             int temp = 0;
             if (int.TryParse(LengthTextBox.Text, out temp))
                 pencil.Length = temp;
+        }
+
+        private void EraseButton_Click(object sender, RoutedEventArgs e)
+        {
+            string tempString = PaperTextBox.Text;
+            pencil.Erase(PencilTextBox.Text, ref tempString);
+            PaperTextBox.Text = tempString;
+            PencilTextBox.Text = "";
+            UpdatePencilStats();
         }
     }
 }

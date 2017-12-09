@@ -13,10 +13,13 @@
                 <TextBox Name="DurabilityTextBox" Text="XXX" Width="Auto" TextChanged="DurabilityTextBox_TextChanged"/>
                 <TextBlock Text="Length:"/>
                 <TextBox Name="LengthTextBox" Text="XXX" Width="Auto"  TextChanged="LengthTextBox_TextChanged"/>
+                <TextBlock Text="Eraser:"/>
+                <TextBox Name="EraserTextBox" Text="XXX" Width="Auto" TextChanged="DurabilityTextBox_TextChanged"/>
                 <Button Name="SharpenButton" Content="Sharpen" Click="SharpenButton_Click"/>
             </DockPanel>
             <DockPanel Height="Auto" LastChildFill="True" VerticalAlignment="Stretch" Width="Auto" HorizontalAlignment="Stretch">
                 <DockPanel Height="Auto" VerticalAlignment="Bottom" Width="Auto" DockPanel.Dock="Bottom" >
+                    <Button Name="EraseButton" Content="Erase" DockPanel.Dock="Right" Click="EraseButton_Click"/>
                     <Button Name="WriteButton" Content="Write" DockPanel.Dock="Right" Click="WriteButton_Click"/>
                     <TextBox Name="PencilTextBox" Text="Enter Text Here" />
                 </DockPanel>
