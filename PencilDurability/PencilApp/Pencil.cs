@@ -124,22 +124,29 @@ namespace PencilApp
             MatchCollection matches = Regex.Matches(exisitingText, @"   +");
             Match lastMatch = matches[matches.Count - 1]; //get last match
             int operationStartIndex = lastMatch.Index + 1; // +1 to ignore the leading space
-            char[] newPaperText = exisitingText.ToArray<Char>();
+            List<char> newPaperText = exisitingText.ToArray<Char>().ToList();
             int inputIterater = 0;
             for(int i = operationStartIndex; inputIterater < inputText.Length; i++)
             {
                 int neededDurability = RequiredDurability(inputText[inputIterater]);
                 if (Durability - neededDurability >= 0)
                 {
-                    if (newPaperText[i] == ' ' || inputText[inputIterater] == ' ')
-                        newPaperText[i] = inputText[inputIterater];
+                    if(i < newPaperText.Count) //did we hit the end of the array?
+                    {
+                        if (newPaperText[i] == ' ' || inputText[inputIterater] == ' ')
+                            newPaperText[i] = inputText[inputIterater];
+                        else
+                            newPaperText[i] = '@';
+                    }
                     else
-                        newPaperText[i] = '@';
+                    {
+                        newPaperText.Add(inputText[inputIterater]);
+                    }
                     Durability -= neededDurability;
                 }
                 inputIterater++;
             }
-            exisitingText = new string(newPaperText);
+            exisitingText = new string(newPaperText.ToArray());
         }
     }
 }

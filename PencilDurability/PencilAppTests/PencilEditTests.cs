@@ -67,5 +67,13 @@ namespace PencilApp.Tests
             testPencil.EditAppend("artichoke", ref fauxPaper);
             Assert.AreEqual("An artich@k@ay keeps the doctor away", fauxPaper);
         }
+
+        [TestMethod()]
+        public void EdittingAWordAtTheEndThatsLongerThanTheGapDoesntIndexOutOfBounds()
+        {
+            fauxPaper = "An apple a day keeps the doctor     ";
+            testPencil.EditAppend("at bay", ref fauxPaper);
+            Assert.AreEqual("An apple a day keeps the doctor at bay", fauxPaper);
+        }
     }
 }
