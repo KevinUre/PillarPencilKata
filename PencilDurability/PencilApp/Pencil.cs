@@ -131,7 +131,10 @@ namespace PencilApp
                 int neededDurability = RequiredDurability(inputText[inputIterater]);
                 if (Durability - neededDurability >= 0)
                 {
-                    newPaperText[i] = inputText[inputIterater];
+                    if (newPaperText[i] == ' ' || inputText[inputIterater] == ' ')
+                        newPaperText[i] = inputText[inputIterater];
+                    else
+                        newPaperText[i] = '@';
                     Durability -= neededDurability;
                 }
                 inputIterater++;

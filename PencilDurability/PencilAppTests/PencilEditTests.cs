@@ -59,5 +59,13 @@ namespace PencilApp.Tests
             testPencil.EditAppend("onion", ref fauxPaper);
             Assert.AreEqual("An on    a day keeps the doctor away", fauxPaper);
         }
+
+        [TestMethod()]
+        public void EditingInAWordLongerThanTheGapReplacesCharactersWithAtSigns()
+        {
+            fauxPaper = "An       a day keeps the doctor away";
+            testPencil.EditAppend("artichoke", ref fauxPaper);
+            Assert.AreEqual("An artich@k@ay keeps the doctor away", fauxPaper);
+        }
     }
 }
