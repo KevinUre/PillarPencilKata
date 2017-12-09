@@ -17,7 +17,7 @@ namespace PencilApp.Tests
         [TestInitialize()]
         public void InitPencil()
         {
-            testPencil = new Pencil(100, 10);
+            testPencil = new Pencil(100, 10, 25);
             fauxPaper = "";
         }
 
@@ -115,7 +115,7 @@ namespace PencilApp.Tests
             testPencil.Write("Hello World", ref fauxPaper);
             testPencil.Sharpen();
             Assert.AreEqual(initialDur, testPencil.Durability);
-            testPencil = new Pencil(1000, 10);
+            testPencil = new Pencil(1000, 10, 25);
             testPencil.Write("Hello World", ref fauxPaper);
             testPencil.Sharpen();
             Assert.AreEqual(1000, testPencil.Durability);
@@ -132,7 +132,7 @@ namespace PencilApp.Tests
         [TestMethod()]
         public void SharpeningAZeroLengthPencilDoesNothing()
         {
-            testPencil = new Pencil(100, 10);
+            testPencil = new Pencil(100, 10, 25);
             testPencil.Length = 0;
             testPencil.Durability = 0;
             testPencil.Sharpen();
@@ -186,6 +186,14 @@ namespace PencilApp.Tests
             testPencil.Erase("chuck", ref fauxPaper);
             testPencil.Erase("chuck", ref fauxPaper);
             Assert.AreEqual("How much wood would a woodchuck chuck if a wood      could       wood?", fauxPaper);
+        }
+
+        [TestMethod()]
+        public void ErasingAWordConsumesThatWordsLengthInEraserDurability()
+        {
+            fauxPaper = "This is an eraser test";
+            testPencil.Erase("eraser", ref fauxPaper);
+            Assert.AreEqual(19, testPencil.EraserDurability);
         }
     }
 }

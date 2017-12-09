@@ -22,12 +22,14 @@ namespace PencilApp
         /// current lenght of the pencil. a pencil with zero length will not sharpen
         /// </summary>
         public int Length;
+        public int EraserDurability;
 
-        public Pencil (int startingDurability, int startingLength)
+        public Pencil (int startingDurability, int startingLength, int initialEraserDurability)
         {
             initialDurability = startingDurability;
             Durability = startingDurability;
             Length = startingLength;
+            EraserDurability = initialEraserDurability;
         }
 
         /// <summary>
@@ -93,6 +95,7 @@ namespace PencilApp
                 {
                     newPaperText += ' ';
                     substringCounter++;
+                    EraserDurability--;
                 }
                 else //if we are past the match
                     newPaperText += exisitingText[paperIter];
