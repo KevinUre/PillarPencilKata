@@ -17,7 +17,7 @@ namespace PencilApp.Tests
         [TestInitialize()]
         public void InitPencil()
         {
-            testPencil = new Pencil(100,10);
+            testPencil = new Pencil(100, 10);
             fauxPaper = "";
         }
 
@@ -119,6 +119,24 @@ namespace PencilApp.Tests
             testPencil.Write("Hello World", ref fauxPaper);
             testPencil.Sharpen();
             Assert.AreEqual(1000, testPencil.Durability);
+        }
+
+        [TestMethod()]
+        public void SharpeningDecreasesLengthOfPencil()
+        {
+            int initialLength = testPencil.Length;
+            testPencil.Sharpen();
+            Assert.AreEqual(initialLength - 1, testPencil.Length);
+        }
+
+        [TestMethod()]
+        public void SharpeningAZeroLengthPencilDoesNothing()
+        {
+            testPencil = new Pencil(100, 10);
+            testPencil.Length = 0;
+            testPencil.Durability = 0;
+            testPencil.Sharpen();
+            Assert.AreEqual(0, testPencil.Durability);
         }
     }
 }

@@ -45,7 +45,12 @@ namespace PencilApp
 
         public void Sharpen()
         {
-            Durability = initialDurability;
+            if(Length > 0)
+            {
+                Durability = initialDurability;
+                Length--;
+            }
+
         }
     }
 }
