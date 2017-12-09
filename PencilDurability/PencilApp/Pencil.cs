@@ -10,10 +10,14 @@ namespace PencilApp
     public class Pencil
     {
         public int Durability;
+        private int initialDurability;
+        public int Length;
 
-        public Pencil (int initialDurability)
+        public Pencil (int startingDurability, int startingLength)
         {
-            Durability = initialDurability;
+            initialDurability = startingDurability;
+            Durability = startingDurability;
+            Length = startingLength;
         }
 
         public void Write(string inputText, ref string existingText)
@@ -37,6 +41,11 @@ namespace PencilApp
                     Durability -= neededDurability;
                 }
             }
+        }
+
+        public void Sharpen()
+        {
+            Durability = initialDurability;
         }
     }
 }
