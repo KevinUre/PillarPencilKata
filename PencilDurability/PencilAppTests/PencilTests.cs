@@ -146,5 +146,46 @@ namespace PencilApp.Tests
             testPencil.Erase("eraser", ref fauxPaper);
             Assert.AreEqual("This is an        test", fauxPaper);
         }
+
+        [TestMethod()]
+        public void ErasingANonexistantWordDoesNothing()
+        {
+            fauxPaper = "Kevin Ure";
+            testPencil.Erase("Zach", ref fauxPaper);
+            Assert.AreEqual("Kevin Ure", fauxPaper);
+        }
+
+        [TestMethod()]
+        public void ErasingPartOfAWordRepalcesOnlyThatPart()
+        {
+            fauxPaper = "antidisestablishmentarianism";
+            testPencil.Erase("establishment", ref fauxPaper);
+            Assert.AreEqual("antidis             arianism", fauxPaper);
+        }
+
+        [TestMethod()]
+        public void ErasingSeveralWordsRepalcesTheWholePhraseWithSpaces()
+        {
+            fauxPaper = "This is an eraser test";
+            testPencil.Erase("an eraser", ref fauxPaper);
+            Assert.AreEqual("This is           test", fauxPaper);
+        }
+
+        [TestMethod()]
+        public void ErasingAWordWithSeveralInstancesOnlyErasesTheLastInstance()
+        {
+            fauxPaper = "How much wood would a woodchuck chuck if a woodchuck could chuck wood?";
+            testPencil.Erase("chuck", ref fauxPaper);
+            Assert.AreEqual("How much wood would a woodchuck chuck if a woodchuck could       wood?", fauxPaper);
+        }
+
+        [TestMethod()]
+        public void ErasingAWordSeveralTimes()
+        {
+            fauxPaper = "How much wood would a woodchuck chuck if a woodchuck could chuck wood?";
+            testPencil.Erase("chuck", ref fauxPaper);
+            testPencil.Erase("chuck", ref fauxPaper);
+            Assert.AreEqual("How much wood would a woodchuck chuck if a wood      could       wood?", fauxPaper);
+        }
     }
 }

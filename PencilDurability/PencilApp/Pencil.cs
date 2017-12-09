@@ -78,6 +78,8 @@ namespace PencilApp
         public void Erase(string inputText, ref string exisitingText)
         {
             MatchCollection matches = Regex.Matches(exisitingText, inputText); //TODO: sanatize pattern to prevent injection attacks
+            if (matches.Count == 0) //if text was not found
+                return;
             Match lastMatch = matches[matches.Count - 1]; //get last match
             int matchStartIndex = lastMatch.Index;
             int substringCounter = 0;
