@@ -9,8 +9,6 @@ namespace PencilApp
 {
     public class Pencil
     {
-        TextBox Paper;
-
         public void Write(string inputText, ref string existingText)
         {
             existingText += inputText;
