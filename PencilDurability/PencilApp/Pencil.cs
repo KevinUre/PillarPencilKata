@@ -100,5 +100,20 @@ namespace PencilApp
             }
             exisitingText = new string(newPaperText);
         }
+
+        public void EditAppend(string inputText, ref string exisitingText)
+        {
+            MatchCollection matches = Regex.Matches(exisitingText, @"   +");
+            Match lastMatch = matches[matches.Count - 1]; //get last match
+            int operationStartIndex = lastMatch.Index + 1; //+1 to ignore the leading space
+            char[] newPaperText = exisitingText.ToArray<Char>();
+            int inputIterater = 0;
+            for(int i = operationStartIndex; inputIterater < inputText.Length; i++)
+            {
+                newPaperText[i] = inputText[inputIterater];
+                inputIterater++;
+            }
+            exisitingText = new string(newPaperText);
+        }
     }
 }

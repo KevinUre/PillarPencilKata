@@ -56,7 +56,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="PencilTests.cs" />
+    <Compile Include="PencilEraseTests.cs" />
+    <Compile Include="PencilEditTests.cs" />
+    <Compile Include="PencilWriteTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
