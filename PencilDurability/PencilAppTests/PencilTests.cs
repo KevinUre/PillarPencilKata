@@ -195,5 +195,13 @@ namespace PencilApp.Tests
             testPencil.Erase("eraser", ref fauxPaper);
             Assert.AreEqual(19, testPencil.EraserDurability);
         }
+
+        [TestMethod()]
+        public void ErasingSpacesDoesNotConsumeEraseDurability()
+        {
+            fauxPaper = "This is an eraser test";
+            testPencil.Erase("an eraser", ref fauxPaper);
+            Assert.AreEqual(17, testPencil.EraserDurability);
+        }
     }
 }

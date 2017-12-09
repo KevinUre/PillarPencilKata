@@ -95,7 +95,8 @@ namespace PencilApp
                 {
                     newPaperText += ' ';
                     substringCounter++;
-                    EraserDurability--;
+                    if(exisitingText[paperIter] != ' ')
+                        EraserDurability--;
                 }
                 else //if we are past the match
                     newPaperText += exisitingText[paperIter];
