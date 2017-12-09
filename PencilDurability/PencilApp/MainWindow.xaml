@@ -5,8 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PencilApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Pencil Simulator" Height="350" Width="525">
     <Grid>
-        
+        <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Width="Auto" LastChildFill="True">
+            <Menu Height="Auto" VerticalAlignment="Top" Width="Auto" DockPanel.Dock="Top">
+                <MenuItem Header="File"/>
+            </Menu>
+            <DockPanel Height="Auto" LastChildFill="True" VerticalAlignment="Stretch" Width="Auto" HorizontalAlignment="Stretch">
+                <DockPanel Height="Auto" VerticalAlignment="Bottom" Width="Auto" DockPanel.Dock="Bottom" >
+                    <Button Name="WriteButton" Content="Write" DockPanel.Dock="Right"/>
+                    <TextBox Name="PencilTextBox" Text="Enter Text Here" />
+                </DockPanel>
+                <TextBox Name="PaperTextBox" AcceptsReturn="True" TextWrapping="Wrap" Text="" Height="Auto" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            </DockPanel>
+        </DockPanel>
+
     </Grid>
 </Window>
