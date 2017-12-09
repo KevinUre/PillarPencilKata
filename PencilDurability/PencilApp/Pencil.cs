@@ -22,13 +22,17 @@ namespace PencilApp
                 return;
             for(int i = 0; i < inputText.Length; i++)
             {
-                if (Durability == 0)
+                int neededDurability;
+                if (Char.IsUpper(inputText[i]))
+                    neededDurability = 2;
+                else if (inputText[i] == ' ')
+                    neededDurability = 0;
+                else
+                    neededDurability = 1;
+                if (Durability - neededDurability < 0)
                     break;
                 existingText += inputText[i];
-                if (Char.IsLower(inputText[i]))
-                    Durability -= 1;
-                if (Char.IsUpper(inputText[i]))
-                    Durability -= 2;
+                Durability -= neededDurability;
             }
         }
     }

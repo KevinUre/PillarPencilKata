@@ -99,5 +99,13 @@ namespace PencilApp.Tests
             testPencil.Write("A", ref fauxPaper);
             Assert.AreEqual(98, testPencil.Durability);
         }
+
+        [TestMethod()]
+        public void UpperCaseLettersCannotBeWrittenWhenThePencilHasOneDurabilty()
+        {
+            testPencil.Durability = 1;
+            testPencil.Write("A", ref fauxPaper);
+            Assert.AreEqual("", fauxPaper);
+        }
     }
 }
