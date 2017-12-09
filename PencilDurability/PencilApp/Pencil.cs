@@ -50,7 +50,6 @@ namespace PencilApp
                 Durability = initialDurability;
                 Length--;
             }
-
         }
     }
 }

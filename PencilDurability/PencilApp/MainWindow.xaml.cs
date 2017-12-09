@@ -25,6 +25,7 @@ namespace PencilApp
         public MainWindow()
         {
             InitializeComponent();
+            UpdatePencilStats();
         }
 
         private void WriteButton_Click(object sender, RoutedEventArgs e)
@@ -33,6 +34,19 @@ namespace PencilApp
             pencil.Write(PencilTextBox.Text, ref tempString);
             PaperTextBox.Text = tempString;
             PencilTextBox.Text = "";
+            UpdatePencilStats();
+        }
+
+        private void SharpenButton_Click(object sender, RoutedEventArgs e)
+        {
+            pencil.Sharpen();
+            UpdatePencilStats();
+        }
+
+        private void UpdatePencilStats()
+        {
+            DurabilityTextBox.Text = pencil.Durability.ToString();
+            LengthTextBox.Text = pencil.Length.ToString();
         }
     }
 }
