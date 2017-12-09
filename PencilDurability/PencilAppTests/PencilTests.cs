@@ -71,22 +71,6 @@ namespace PencilApp.Tests
         }
 
         [TestMethod()]
-        public void PencilStopsWritingWhenOutOfDurability()
-        {
-            testPencil.Durability = 3;
-            testPencil.Write("hello world", ref fauxPaper);
-            Assert.AreEqual("hel", fauxPaper);
-        }
-
-        [TestMethod()]
-        public void PencilWithNoDurabilityCantWrite()
-        {
-            testPencil.Durability = 0;
-            testPencil.Write("hello world", ref fauxPaper);
-            Assert.AreEqual("", fauxPaper);
-        }
-
-        [TestMethod()]
         public void LowerCaseLettersUseOneDurability()
         {
             testPencil.Write("a", ref fauxPaper);
@@ -105,7 +89,23 @@ namespace PencilApp.Tests
         {
             testPencil.Durability = 1;
             testPencil.Write("A", ref fauxPaper);
-            Assert.AreEqual("", fauxPaper);
+            Assert.AreEqual(" ", fauxPaper);
+        }
+
+        [TestMethod()]
+        public void ZeroDurabilityPencilWritesOnlySpaces()
+        {
+            testPencil.Durability = 0;
+            testPencil.Write("Hello", ref fauxPaper);
+            Assert.AreEqual("     ", fauxPaper);
+        }
+
+        [TestMethod()]
+        public void PencilWritesSpacesMidRequestIfDurabilityRunsOut()
+        {
+            testPencil.Durability = 3;
+            testPencil.Write("Hello", ref fauxPaper);
+            Assert.AreEqual("He   ", fauxPaper);
         }
     }
 }

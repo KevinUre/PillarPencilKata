@@ -30,9 +30,12 @@ namespace PencilApp
                 else
                     neededDurability = 1;
                 if (Durability - neededDurability < 0)
-                    break;
-                existingText += inputText[i];
-                Durability -= neededDurability;
+                    existingText += " ";
+                else
+                {
+                    existingText += inputText[i];
+                    Durability -= neededDurability;
+                }
             }
         }
     }
