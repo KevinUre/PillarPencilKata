@@ -47,7 +47,6 @@ namespace PencilApp.Tests
             testPencil.Write("She sells sea shells", ref fauxPaper);
             testPencil.Write(" down by the sea shore", ref fauxPaper);
             Assert.AreEqual("She sells sea shells down by the sea shore", fauxPaper);
-
         }
     }
 }

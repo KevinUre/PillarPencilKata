@@ -20,9 +20,19 @@ namespace PencilApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        Pencil pencil = new Pencil();
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void WriteButton_Click(object sender, RoutedEventArgs e)
+        {
+            string tempString = PaperTextBox.Text;
+            pencil.Write(PencilTextBox.Text, ref tempString);
+            PaperTextBox.Text = tempString;
+            PencilTextBox.Text = "";
         }
     }
 }

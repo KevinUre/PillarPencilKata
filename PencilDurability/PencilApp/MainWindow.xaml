@@ -13,7 +13,7 @@
             </Menu>
             <DockPanel Height="Auto" LastChildFill="True" VerticalAlignment="Stretch" Width="Auto" HorizontalAlignment="Stretch">
                 <DockPanel Height="Auto" VerticalAlignment="Bottom" Width="Auto" DockPanel.Dock="Bottom" >
-                    <Button Name="WriteButton" Content="Write" DockPanel.Dock="Right"/>
+                    <Button Name="WriteButton" Content="Write" DockPanel.Dock="Right" Click="WriteButton_Click"/>
                     <TextBox Name="PencilTextBox" Text="Enter Text Here" />
                 </DockPanel>
                 <TextBox Name="PaperTextBox" AcceptsReturn="True" TextWrapping="Wrap" Text="" Height="Auto" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
