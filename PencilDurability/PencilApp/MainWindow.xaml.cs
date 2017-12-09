@@ -72,5 +72,14 @@ namespace PencilApp
             PencilTextBox.Text = "";
             UpdatePencilStats();
         }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            string tempString = PaperTextBox.Text;
+            pencil.EditAppend(PencilTextBox.Text, ref tempString);
+            PaperTextBox.Text = tempString;
+            PencilTextBox.Text = "";
+            UpdatePencilStats();
+        }
     }
 }

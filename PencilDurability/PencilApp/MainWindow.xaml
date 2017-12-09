@@ -20,6 +20,7 @@
             <DockPanel Height="Auto" LastChildFill="True" VerticalAlignment="Stretch" Width="Auto" HorizontalAlignment="Stretch">
                 <DockPanel Height="Auto" VerticalAlignment="Bottom" Width="Auto" DockPanel.Dock="Bottom" >
                     <Button Name="EraseButton" Content="Erase" DockPanel.Dock="Right" Click="EraseButton_Click"/>
+                    <Button Name="EditButton" Content="Edit(Insert)" DockPanel.Dock="Right" Click="EditButton_Click"/>
                     <Button Name="WriteButton" Content="Write" DockPanel.Dock="Right" Click="WriteButton_Click"/>
                     <TextBox Name="PencilTextBox" Text="Enter Text Here" />
                 </DockPanel>
