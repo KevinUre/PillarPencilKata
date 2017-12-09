@@ -17,7 +17,7 @@ namespace PencilApp.Tests
         [TestInitialize()]
         public void InitPencil()
         {
-            testPencil = new Pencil();
+            testPencil = new Pencil(100);
             fauxPaper = "";
         }
 
@@ -47,6 +47,13 @@ namespace PencilApp.Tests
             testPencil.Write("She sells sea shells", ref fauxPaper);
             testPencil.Write(" down by the sea shore", ref fauxPaper);
             Assert.AreEqual("She sells sea shells down by the sea shore", fauxPaper);
+        }
+
+        [TestMethod()]
+        public void PencilDurabilityDecreasesWhenWritingMyName()
+        {
+            testPencil.Write("Kevin", ref fauxPaper);
+            Assert.AreEqual(95, testPencil.Durability);
         }
     }
 }

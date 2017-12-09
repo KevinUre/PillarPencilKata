@@ -20,7 +20,7 @@ namespace PencilApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        Pencil pencil = new Pencil();
+        Pencil pencil = new Pencil(100);
 
         public MainWindow()
         {
