@@ -62,5 +62,12 @@ namespace PencilApp.Tests
             testPencil.Write("Antidisestablishmentarianism", ref fauxPaper);
             Assert.AreEqual(72, testPencil.Durability);
         }
+
+        [TestMethod()]
+        public void PencilDurabilityDoesNotCountSpacesWhenWritingHelloWorld()
+        {
+            testPencil.Write("Hello World", ref fauxPaper);
+            Assert.AreEqual(90, testPencil.Durability);
+        }
     }
 }
