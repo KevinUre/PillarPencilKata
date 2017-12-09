@@ -25,8 +25,10 @@ namespace PencilApp
                 if (Durability == 0)
                     break;
                 existingText += inputText[i];
-                if (inputText[i] != ' ')
-                    Durability--;
+                if (Char.IsLower(inputText[i]))
+                    Durability -= 1;
+                if (Char.IsUpper(inputText[i]))
+                    Durability -= 2;
             }
         }
     }

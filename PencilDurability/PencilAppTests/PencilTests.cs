@@ -52,21 +52,21 @@ namespace PencilApp.Tests
         [TestMethod()]
         public void PencilDurabilityDecreasesWhenWritingMyFirstName()
         {
-            testPencil.Write("Kevin", ref fauxPaper);
+            testPencil.Write("kevin", ref fauxPaper);
             Assert.AreEqual(95, testPencil.Durability);
         }
 
         [TestMethod()]
         public void PencilDurabilityDecreasesWhenWritingAntidisestablishmentarianism()
         {
-            testPencil.Write("Antidisestablishmentarianism", ref fauxPaper);
+            testPencil.Write("antidisestablishmentarianism", ref fauxPaper);
             Assert.AreEqual(72, testPencil.Durability);
         }
 
         [TestMethod()]
         public void PencilDurabilityDoesNotCountSpacesWhenWritingHelloWorld()
         {
-            testPencil.Write("Hello World", ref fauxPaper);
+            testPencil.Write("hello world", ref fauxPaper);
             Assert.AreEqual(90, testPencil.Durability);
         }
 
@@ -74,16 +74,30 @@ namespace PencilApp.Tests
         public void PencilStopsWritingWhenOutOfDurability()
         {
             testPencil.Durability = 3;
-            testPencil.Write("Hello World", ref fauxPaper);
-            Assert.AreEqual("Hel", fauxPaper);
+            testPencil.Write("hello world", ref fauxPaper);
+            Assert.AreEqual("hel", fauxPaper);
         }
 
         [TestMethod()]
         public void PencilWithNoDurabilityCantWrite()
         {
             testPencil.Durability = 0;
-            testPencil.Write("Hello World", ref fauxPaper);
+            testPencil.Write("hello world", ref fauxPaper);
             Assert.AreEqual("", fauxPaper);
+        }
+
+        [TestMethod()]
+        public void LowerCaseLettersUseOneDurability()
+        {
+            testPencil.Write("a", ref fauxPaper);
+            Assert.AreEqual(99, testPencil.Durability);
+        }
+
+        [TestMethod()]
+        public void UpperCaseLettersUseTwoDurability()
+        {
+            testPencil.Write("A", ref fauxPaper);
+            Assert.AreEqual(98, testPencil.Durability);
         }
     }
 }
