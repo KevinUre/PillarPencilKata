@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
@@ -33,7 +34,7 @@ namespace PencilApp
         /// appends a string to another string so long as the pencil has durability to use. Adds spaces if not.
         /// </summary>
         /// <param name="inputText">The text to be written by the pencil</param>
-        /// <param name="existingText">Where to write the text to</param>
+        /// <param name="existingText">Where to write the text to. Is a ref parameter for seperation for GUI textbox as a dependancy while maintaining easy GUI linkage</param>
         public void Write(string inputText, ref string existingText)
         {
             if (inputText == null)
@@ -67,6 +68,34 @@ namespace PencilApp
                 Durability = initialDurability;
                 Length--;
             }
+        }
+
+        /// <summary>
+        /// Removes the first instance of the given text from a string, searching back to front
+        /// </summary>
+        /// <param name="inputText">the text to be erased</param>
+        /// <param name="exisitingText">the text to erase from. Is a ref parameter for seperation for GUI textbox as a dependancy while maintaining easy GUI linkage</param>
+        public void Erase(string inputText, ref string exisitingText)
+        {
+            MatchCollection matches = Regex.Matches(exisitingText, inputText); //TODO: sanatize pattern to prevent injection attacks
+            Match lastMatch = matches[matches.Count - 1]; //get last match
+            int matchStartIndex = lastMatch.Index;
+            int substringCounter = 0;
+            int substringLength = lastMatch.Length;
+            string newPaperText = "";
+            for (int paperIter = 0; paperIter < exisitingText.Length; paperIter++)
+            {
+                if (paperIter < matchStartIndex) //if we arent up to the match yet
+                    newPaperText += exisitingText[paperIter];
+                else if (substringCounter < substringLength)
+                {
+                    newPaperText += ' ';
+                    substringCounter++;
+                }
+                else //if we are past the match
+                    newPaperText += exisitingText[paperIter];
+            }
+            exisitingText = newPaperText;
         }
     }
 }

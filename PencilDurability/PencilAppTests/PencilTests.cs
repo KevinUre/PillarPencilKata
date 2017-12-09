@@ -138,5 +138,13 @@ namespace PencilApp.Tests
             testPencil.Sharpen();
             Assert.AreEqual(0, testPencil.Durability);
         }
+
+        [TestMethod()]
+        public void ErasingASignleWordRepalcesItWithSpaces()
+        {
+            fauxPaper = "This is an eraser test";
+            testPencil.Erase("eraser", ref fauxPaper);
+            Assert.AreEqual("This is an        test", fauxPaper);
+        }
     }
 }
