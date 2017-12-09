@@ -10,9 +10,9 @@
         <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Width="Auto" LastChildFill="True">
             <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="Auto" Width="Auto" DockPanel.Dock="Top">
                 <TextBlock Text="Durability:"/>
-                <TextBox Name="DurabilityTextBox" Text="XXX" Width="Auto" IsReadOnly="True"/>
+                <TextBox Name="DurabilityTextBox" Text="XXX" Width="Auto" TextChanged="DurabilityTextBox_TextChanged"/>
                 <TextBlock Text="Length:"/>
-                <TextBox Name="LengthTextBox" Text="XXX" Width="Auto" IsReadOnly="True"/>
+                <TextBox Name="LengthTextBox" Text="XXX" Width="Auto"  TextChanged="LengthTextBox_TextChanged"/>
                 <Button Name="SharpenButton" Content="Sharpen" Click="SharpenButton_Click"/>
             </DockPanel>
             <DockPanel Height="Auto" LastChildFill="True" VerticalAlignment="Stretch" Width="Auto" HorizontalAlignment="Stretch">

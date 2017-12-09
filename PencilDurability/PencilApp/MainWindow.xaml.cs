@@ -48,5 +48,19 @@ namespace PencilApp
             DurabilityTextBox.Text = pencil.Durability.ToString();
             LengthTextBox.Text = pencil.Length.ToString();
         }
+
+        private void DurabilityTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int temp = 0;
+            if (int.TryParse(DurabilityTextBox.Text, out temp))
+                pencil.Durability = temp;
+        }
+
+        private void LengthTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int temp = 0;
+            if (int.TryParse(LengthTextBox.Text, out temp))
+                pencil.Length = temp;
+        }
     }
 }
