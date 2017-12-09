@@ -28,5 +28,19 @@ namespace PencilApp.Tests
             testPencil.EditAppend("onion", ref fauxPaper);
             Assert.AreEqual("An onion a day keeps the doctor away", fauxPaper);
         }
+
+        [TestMethod()]
+        public void EditingWithANullInputDoesntCrash()
+        {
+            fauxPaper = "An       a day keeps the doctor away";
+            testPencil.EditAppend(null, ref fauxPaper);
+        }
+
+        [TestMethod()]
+        public void EditingWithANullPaperDoesntCrash()
+        {
+            fauxPaper = null;
+            testPencil.EditAppend("onion", ref fauxPaper);
+        }
     }
 }

@@ -103,6 +103,8 @@ namespace PencilApp
 
         public void EditAppend(string inputText, ref string exisitingText)
         {
+            if (inputText == null || exisitingText == null)
+                return;
             MatchCollection matches = Regex.Matches(exisitingText, @"   +");
             Match lastMatch = matches[matches.Count - 1]; //get last match
             int operationStartIndex = lastMatch.Index + 1; //+1 to ignore the leading space
