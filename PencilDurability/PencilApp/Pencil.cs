@@ -84,24 +84,19 @@ namespace PencilApp
                 return;
             Match lastMatch = matches[matches.Count - 1]; //get last match
             int matchStartIndex = lastMatch.Index;
-            int substringCounter = 0;
             int substringLength = lastMatch.Length;
-            string newPaperText = "";
-            for (int paperIter = 0; paperIter < exisitingText.Length; paperIter++)
+            int operationStartIndex = matchStartIndex + substringLength-1;
+            char[] newPaperText = exisitingText.ToArray<Char>();
+            for(int backwardspaperIter = operationStartIndex; backwardspaperIter > matchStartIndex-1; backwardspaperIter--)
             {
-                if (paperIter < matchStartIndex) //if we arent up to the match yet
-                    newPaperText += exisitingText[paperIter];
-                else if (substringCounter < substringLength)
+                if(EraserDurability > 0)
                 {
-                    newPaperText += ' ';
-                    substringCounter++;
-                    if(exisitingText[paperIter] != ' ')
+                    newPaperText[backwardspaperIter] = ' ';
+                    if(exisitingText[backwardspaperIter] != ' ')
                         EraserDurability--;
                 }
-                else //if we are past the match
-                    newPaperText += exisitingText[paperIter];
             }
-            exisitingText = newPaperText;
+            exisitingText = new string(newPaperText);
         }
     }
 }

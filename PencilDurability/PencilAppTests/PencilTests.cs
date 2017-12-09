@@ -203,5 +203,14 @@ namespace PencilApp.Tests
             testPencil.Erase("an eraser", ref fauxPaper);
             Assert.AreEqual(17, testPencil.EraserDurability);
         }
+
+        [TestMethod()]
+        public void ErasingAPhraseLongerThanTheEraserDurabilityFailsToEraseItAll()
+        {
+            testPencil.EraserDurability = 3;
+            fauxPaper = "Buffalo Bill";
+            testPencil.Erase("Bill", ref fauxPaper);
+            Assert.AreEqual("Buffalo B   ", fauxPaper);
+        }
     }
 }
