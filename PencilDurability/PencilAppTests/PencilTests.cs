@@ -212,5 +212,19 @@ namespace PencilApp.Tests
             testPencil.Erase("Bill", ref fauxPaper);
             Assert.AreEqual("Buffalo B   ", fauxPaper);
         }
+
+        [TestMethod()]
+        public void ErasingANullInputDoesntCrash()
+        {
+            fauxPaper = "This is an eraser test";
+            testPencil.Erase(null, ref fauxPaper);
+        }
+
+        [TestMethod()]
+        public void ErasingNullPaperDoesntCrash()
+        {
+            fauxPaper = null;
+            testPencil.Erase("chuck", ref fauxPaper);
+        }
     }
 }

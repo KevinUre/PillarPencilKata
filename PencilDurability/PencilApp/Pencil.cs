@@ -79,6 +79,8 @@ namespace PencilApp
         /// <param name="exisitingText">the text to erase from. Is a ref parameter for seperation for GUI textbox as a dependancy while maintaining easy GUI linkage</param>
         public void Erase(string inputText, ref string exisitingText)
         {
+            if (inputText == null || exisitingText == null)
+                return;
             MatchCollection matches = Regex.Matches(exisitingText, inputText); //TODO: sanatize pattern to prevent injection attacks
             if (matches.Count == 0) //if text was not found
                 return;
