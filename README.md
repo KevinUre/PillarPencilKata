@@ -25,3 +25,5 @@ unpack the testing framework included in the release. inside is a copy of `vstes
 ex. `vstest.console.exe "C:\Users\Kevin\SkyDrive\Visual Studio Projects\PillarKata\BuildCommit31\PencilAppTests.dll"`
 
 If the window simply says `Starting test execition, please wait...` then returns to command line check to see that you have .NET Framework 4.0, 4.5, and 4.5.1 redistributables installed.
+
+If that doesn't work then download and install the [Visual Studio Test Agent from here](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=TestAgent&rel=15#). It contains `vstest.console.exe` and all files necessary to properly run it.
